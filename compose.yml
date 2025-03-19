@@ -1,0 +1,29 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: docker/fastapi
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    networks:
+    - web
+
+  ollama:
+    build: docker/ollama
+    ports:
+      - 11434:11434
+    volumes:
+      - ollama:/app/ollama
+    networks:
+     - web
+
+networks:
+  web:
+    driver: bridge
+
+volumes:
+  ollama:
+     driver: local
+
