@@ -66,6 +66,8 @@ build-hub:
 	VERSION=$(VERSION) docker compose pull && \
 	VERSION=$(VERSION) docker compose up -d --no-build
 
-# liist ollama models available
-list-models:
-	  docker exec -it llama32-ollama ollama list
+# exec into containers
+exec-ollama:
+	  docker exec -it llama3.2-ollama sh 
+exec-web:
+	  docker exec -it llama3.2-web sh
