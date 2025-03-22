@@ -2,11 +2,11 @@
 set -e
 
 # Get the current version
-VERSION=$(cat VERSION)
+VERSION=$(cat ../VERSION)
 
 # Build images
 echo "Building Docker images..."
-VERSION=$VERSION docker-compose -f compose.yml build
+VERSION=$VERSION docker-compose -f ../compose.yml build
 
 # Tag with latest
 echo "Tagging images with version v${VERSION}..."

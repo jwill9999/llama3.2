@@ -59,7 +59,7 @@ push:
 
 # Push with versioning
 push-version:
-	./tag-version.sh $(BUMP_TYPE)
+	./scripts/tag-version.sh $(BUMP_TYPE)
 
 # Pull and restart with no build
 update:

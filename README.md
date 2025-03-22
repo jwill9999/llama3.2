@@ -1,7 +1,7 @@
 # Llama 3.2 FastAPI Integration
 
 <div align="center">
-<img src="./public/ollama.jpg" alt="Ollama with Llama 3.2" width="300" />
+<img src="./public/ollama.jpg" alt="Ollama with Llama 3.2"  />
 </div>
 
 A FastAPI service that interfaces with Ollama to provide a REST API for the Llama 3.2 model.
@@ -99,13 +99,17 @@ llama3.2/
 │   │   └── Dockerfile
 │   └── ollama/
 │       └── Dockerfile
-├── main.py           # FastAPI application
-├── requirements.txt  # Python dependencies
-├── compose.yml       # Docker Compose configuration
-├── makefile          # Make commands
-├── tag-version.sh    # Version tagging script
-├── build-and-tag.sh  # Build and tag script
-└── VERSION           # Current version file
+├── scripts/
+│   ├── tag-version.sh     # Version tagging script
+│   ├── build-and-tag.sh   # Build and tag script
+│   └── pull-llama3.2.sh   # Pull Llama model script
+├── public/
+│   └── ollama.jpg         # Logo image
+├── main.py                # FastAPI application
+├── requirements.txt       # Python dependencies
+├── compose.yml            # Docker Compose configuration
+├── makefile               # Make commands
+└── VERSION                # Current version file
 ```
 
 ## Requirements
