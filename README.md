@@ -80,13 +80,14 @@ docker run -p 8000:8000 jwill9999/llama3.2-web:latest
 | `make build-web`             | Build only the web service                 |
 | `make build-ollama`          | Build only the ollama service              |
 | `make push`                  | Push images to Docker Hub                  |
-| `make update VERSION=1.2.0`  | Pull and restart with specific version     |
+| `make build-hub VERSION=1.2.0`  | Pull and restart with specific version     |
+| `make build-hub`  | Pull and restart latest version     |
 
 ### Versioning
 
 | Command                         | Description                               |
 |---------------------------------|-------------------------------------------|
-| `make push-version`             | Tag and push with patch version bump      |
+| `make push-version`             | Tag and push all services with patch version bump      |
 | `make push-version BUMP_TYPE=minor` | Bump minor version (1.0.0 → 1.1.0)   |
 | `make push-version BUMP_TYPE=major` | Bump major version (1.0.0 → 2.0.0)   |
 
