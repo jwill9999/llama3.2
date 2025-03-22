@@ -33,3 +33,29 @@
 > Open API docs  http://localhost:8000/docs
 
 > JSON response http://localhost:8000
+
+# Makefile commands
+
+```
+# Build and start in development mode (with logs)
+make dev
+
+# Deploy with a specific version
+make prod VERSION=1.0.0
+
+# Pull latest images and restart
+make update
+
+# Build images locally
+make build
+
+# Just run the test environment
+make test
+
+# Shut down all services
+make down
+
+# Clean up everything including volumes
+make clean
+
+```

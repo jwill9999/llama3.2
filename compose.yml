@@ -2,7 +2,8 @@ services:
   web:
     build:
       context: .
-      dockerfile: docker/fastapi
+      dockerfile: docker/fastapi/Dockerfile
+    image: jwill9999/llama3.2-web:${VERSION:-latest}
     ports:
       - "8000:8000"
     volumes:
@@ -11,7 +12,10 @@ services:
     - web
 
   ollama:
-    build: docker/ollama
+    build:
+      context: .
+      dockerfile: docker/ollama/Dockerfile
+    image: jwill9999/llama3.2-ollama:${VERSION:-latest}
     ports:
       - 11434:11434
     volumes:
