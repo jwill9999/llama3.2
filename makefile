@@ -1,4 +1,4 @@
-.PHONY: build up down pull clean logs restart dev prod test push push-version
+.PHONY: build up down pull clean logs restart dev prod test push push-version push-build-tag-version
 
 # Default version tag
 VERSION ?= latest
@@ -58,14 +58,15 @@ push:
 	docker compose push
 
 # Push with versioning
-push-tag-version:
+push-version:
 	./scripts/tag-version.sh $(BUMP_TYPE)
 
+# Build, tag and push images without version increment
 push-build-tag-version:
-	./scripts/build-and-tag.sh $(BUMP_TYPE) 
-	
+	./scripts/build-and-tag.sh
+
 # Pull and restart with no build
-build-hub:
+update:
 	VERSION=$(VERSION) docker compose pull && \
 	VERSION=$(VERSION) docker compose up -d --no-build
 
