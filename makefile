@@ -65,3 +65,7 @@ push-version:
 build-hub:
 	VERSION=$(VERSION) docker compose pull && \
 	VERSION=$(VERSION) docker compose up -d --no-build
+
+# liist ollama models available
+list-models:
+	  docker exec -it llama32-ollama ollama list

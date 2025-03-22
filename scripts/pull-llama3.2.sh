@@ -9,4 +9,6 @@ sleep 5
 echo "Pulling Llama 3.2 model..."
 ollama pull llama3.2
 
+
 echo "Model successfully pulled"
+docker exec -it llama32-ollama ollama pull llama3.2
