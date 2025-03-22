@@ -58,9 +58,12 @@ push:
 	docker compose push
 
 # Push with versioning
-push-version:
+push-tag-version:
 	./scripts/tag-version.sh $(BUMP_TYPE)
 
+push-build-tag-version:
+	./scripts/build-and-tag.sh $(BUMP_TYPE) 
+	
 # Pull and restart with no build
 build-hub:
 	VERSION=$(VERSION) docker compose pull && \
