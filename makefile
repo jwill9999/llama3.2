@@ -62,6 +62,6 @@ push-version:
 	./scripts/tag-version.sh $(BUMP_TYPE)
 
 # Pull and restart with no build
-update:
+build-hub:
 	VERSION=$(VERSION) docker compose pull && \
 	VERSION=$(VERSION) docker compose up -d --no-build

@@ -1,8 +1,12 @@
 #!/bin/bash
 set -e
 
+# Get the project root directory (parent of scripts directory)
+PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd $PROJECT_ROOT
+
 # Read current version
-VERSION=$(cat ../VERSION)
+VERSION=$(cat VERSION)
 echo "Current version: $VERSION"
 
 # Parse version components
@@ -39,7 +43,7 @@ NEW_VERSION="${MAJOR}.${MINOR}.${PATCH}"
 echo "New version: $NEW_VERSION"
 
 # Update version file
-echo $NEW_VERSION > ../VERSION
+echo $NEW_VERSION > VERSION
 
 # Tag Docker images
 docker tag jwill9999/llama3.2-web:latest jwill9999/llama3.2-web:v${NEW_VERSION}
@@ -58,19 +62,19 @@ if [[ $PUSH_CHOICE == "y" || $PUSH_CHOICE == "Y" ]]; then
 fi
 
 # Commit version change if git repository exists
-if [ -d ../.git ]; then
-  git -C .. add VERSION
-  git -C .. commit -m "Bump version to v${NEW_VERSION}"
+if [ -d .git ]; then
+  git add VERSION
+  git commit -m "Bump version to v${NEW_VERSION}"
   
   # Ask if user wants to create a git tag
   read -p "Create git tag v${NEW_VERSION}? (y/n): " TAG_CHOICE
   if [[ $TAG_CHOICE == "y" || $TAG_CHOICE == "Y" ]]; then
-    git -C .. tag -a "v${NEW_VERSION}" -m "Version ${NEW_VERSION}"
+    git tag -a "v${NEW_VERSION}" -m "Version ${NEW_VERSION}"
     
     read -p "Push git tag to remote? (y/n): " PUSH_GIT_CHOICE
     if [[ $PUSH_GIT_CHOICE == "y" || $PUSH_GIT_CHOICE == "Y" ]]; then
-      git -C .. push origin "v${NEW_VERSION}"
-      git -C .. push
+      git push origin "v${NEW_VERSION}"
+      git push
     fi
   fi
 fi

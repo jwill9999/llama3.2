@@ -1,12 +1,16 @@
 #!/bin/bash
 set -e
 
+# Get the project root directory (parent of scripts directory)
+PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd $PROJECT_ROOT
+
 # Get the current version
-VERSION=$(cat ../VERSION)
+VERSION=$(cat VERSION)
 
 # Build images
 echo "Building Docker images..."
-VERSION=$VERSION docker-compose -f ../compose.yml build
+VERSION=$VERSION docker-compose -f compose.yml build
 
 # Tag with latest
 echo "Tagging images with version v${VERSION}..."
@@ -14,7 +18,7 @@ docker tag jwill9999/llama3.2-web:$VERSION jwill9999/llama3.2-web:latest
 docker tag jwill9999/llama3.2-ollama:$VERSION jwill9999/llama3.2-ollama:latest
 
 echo "Build and tag complete!"
-echo "Run ./tag-version.sh to increment version for next release"
+echo "Run ./scripts/tag-version.sh to increment version for next release"
 
 # Ask if user wants to push
 read -p "Push images to Docker Hub? (y/n): " PUSH_CHOICE
