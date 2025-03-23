@@ -3,9 +3,8 @@
 <div align="center">
 <img src="./public/ollama.jpg" alt="Ollama with Llama 3.2"  />
 </div>
-<div align="center">
-<img src="./public/webui.png" alt="Ollama with Llama 3.2"  />
-</div>
+
+<br>
 
 A FastAPI service that interfaces with Ollama to provide a REST API for the Llama 3.2 model.
 
