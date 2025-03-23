@@ -1,4 +1,4 @@
-.PHONY: build up down pull clean logs restart dev prod test push push-version push-build-tag-version
+.PHONY: build up down pull clean logs restart dev prod test push push-version push-build-tag-version prune-all prune
 
 # Default version tag
 VERSION ?= latest
@@ -75,3 +75,11 @@ exec-ollama:
 	  docker exec -it llama3.2-ollama sh 
 exec-web:
 	  docker exec -it llama3.2-web sh
+
+# Completely clean Docker system including volumes
+prune-all:
+	docker system prune -a --volumes
+
+# Prune just containers and networks (safer)
+prune:
+	docker system prune

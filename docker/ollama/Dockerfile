@@ -1,13 +1,19 @@
+# Use the official Ollama image
 FROM ollama/ollama
 
-RUN echo "Building OLLAMA Docker image" && \
-    COPY ./scripts/pull-llama3.2.sh /pull-llama3.2.sh  && \
-    echo "✅ OLLAMA Docker pull image build started successfully"
-RUN echo "Updating file permissions" && \
-    chmod +x /pull-llama3.2.sh && \
-    echo "✅ File permissions updated successfully"
+# Copy your start script directly
+COPY docker/ollama/start.sh /start.sh
 
-ENTRYPOINT ["ollama", "serve"]
+# Make the script executable
+RUN chmod +x /start.sh
+
+# Override the ENTRYPOINT from the parent image
+ENTRYPOINT []
+
+# Set the command to run your script
+CMD ["/start.sh"]
+
+
 
 
 

@@ -2,16 +2,19 @@ FROM python:3.10-slim
 
 WORKDIR /app
 
-RUN echo "Coping dependencies file" && \
-    COPY requirements.txt /app/requirements.txt && \
+# Copy requirements file
+COPY requirements.txt /app/requirements.txt
+
+# Install dependencies
+RUN echo "Installing dependencies" && \
     pip install --no-cache-dir -r /app/requirements.txt && \
-    echo "✅ Install dependencies"
+    echo "✅ Install dependencies complete"
 
+# Copy source code
+COPY main.py /app/main.py
 
-RUN echo "Coping source code" && \
-    COPY main.py /app/main.py && \
-     echo "✅ Copy source code"
+# Output info message
+RUN echo "✅ FastAPI server ready to start"
 
-RUN echo "Staring FastAPI server" && \
-    echo "✅ FastAPI server started"
+# Start FastAPI server
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]

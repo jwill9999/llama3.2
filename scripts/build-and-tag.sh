@@ -1,12 +1,10 @@
 #!/bin/bash
 set -e
 
-# Get the project root directory (parent of scripts directory)
-PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-cd $PROJECT_ROOT
+
 
 # Rebuild Docker containers using the composer.yml file
-docker-compose -f "${PROJECT_ROOT}/composer.yml" build
+docker compose build
 
 # Read current version
 VERSION=$(cat VERSION)

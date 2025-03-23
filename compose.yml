@@ -21,7 +21,7 @@ services:
     ports:
       - 11434:11434
     volumes:
-      - ollama:/app/ollama
+      - ollama:/root/.ollama
     networks:
      - web
 
