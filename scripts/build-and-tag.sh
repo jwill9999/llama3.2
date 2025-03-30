@@ -47,7 +47,7 @@ echo "New version: $NEW_VERSION"
 echo $NEW_VERSION > VERSION
 
 # Tag Docker images
-docker tag jwill9999/llama3.2-web:latest jwill9999/llama3.2-web:v${NEW_VERSION}
+docker tag jwill9999/llama3.2-api:latest jwill9999/llama3.2-api:v${NEW_VERSION}
 docker tag jwill9999/llama3.2-ollama:latest jwill9999/llama3.2-ollama:v${NEW_VERSION}
 
 echo "Images tagged with version v${NEW_VERSION}"
@@ -55,9 +55,9 @@ echo "Images tagged with version v${NEW_VERSION}"
 # Ask if user wants to push the new tags
 read -p "Push tags to Docker Hub? (y/n): " PUSH_CHOICE
 if [[ $PUSH_CHOICE == "y" || $PUSH_CHOICE == "Y" ]]; then
-  docker push jwill9999/llama3.2-web:v${NEW_VERSION}
+  docker push jwill9999/llama3.2-api:v${NEW_VERSION}
   docker push jwill9999/llama3.2-ollama:v${NEW_VERSION}
-  docker push jwill9999/llama3.2-web:latest
+  docker push jwill9999/llama3.2-api:latest
   docker push jwill9999/llama3.2-ollama:latest
   echo "Tags pushed to Docker Hub"
 fi

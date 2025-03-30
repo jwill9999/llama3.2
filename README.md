@@ -52,10 +52,10 @@ make up
 
 ```bash
 # Pull the image
-docker pull jwill9999/llama3.2-web:latest
+docker pull jwill9999/llama3.2-api:latest
 
 # Run the container
-docker run -p 8000:8000 jwill9999/llama3.2-web:latest
+docker run -p 8000:8000 jwill9999/llama3.2-api:latest
 ```
 
 ## Available Commands
@@ -79,7 +79,7 @@ docker run -p 8000:8000 jwill9999/llama3.2-web:latest
 | `make pull VERSION=1.2.0`    | Pull images with specific version          |
 | `make clean`                 | Stop services and remove volumes           |
 | `make test`                  | Build and start with test version          |
-| `make build-web`             | Build only the web service                 |
+| `make build-api`             | Build only the api service                 |
 | `make build-ollama`          | Build only the ollama service              |
 | `make push`                  | Push images to Docker Hub                  |
 | `make build-hub VERSION=1.2.0`  | Pull and restart with specific version     |

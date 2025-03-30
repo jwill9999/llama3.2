@@ -47,8 +47,8 @@ test:
 	VERSION=test docker compose up -d --build
 
 # Build a specific service
-build-web:
-	docker compose build web
+build-api:
+	docker compose build api
 
 build-ollama:
 	docker compose build ollama
@@ -73,8 +73,8 @@ update:
 # exec into containers
 exec-ollama:
 	  docker exec -it llama3.2-ollama sh 
-exec-web:
-	  docker exec -it llama3.2-web sh
+exec-api:
+	  docker exec -it llama3.2-api sh
 
 # Completely clean Docker system including volumes
 prune-all:
