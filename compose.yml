@@ -4,6 +4,12 @@ services:
       context: .
       dockerfile: docker/fastapi/Dockerfile
     image: jwill9999/llama3.2-api:${VERSION:-latest}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
     container_name: llama3.2-api
     ports:
       - "8000:8000"
@@ -18,6 +24,12 @@ services:
       context: .
       dockerfile: docker/ollama/Dockerfile
     image: jwill9999/llama3.2-ollama:${VERSION:-latest}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:11434/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
     container_name: llama3.2-ollama
     ports:
       - 11434:11434

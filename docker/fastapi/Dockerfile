@@ -5,6 +5,8 @@ WORKDIR /app
 # Copy requirements file
 COPY requirements.txt /app/requirements.txt
 
+RUN apt-get update && apt-get install -y curl
+
 # Install dependencies
 RUN echo "Installing dependencies" && \
     pip install --no-cache-dir -r /app/requirements.txt && \
