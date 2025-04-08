@@ -7,7 +7,9 @@ COPY mcp/src ./src
 COPY mcp/tsconfig.json ./
 
 RUN --mount=type=cache,target=/root/.npm npm install
+RUN npm install -g typescript
 RUN --mount=type=cache,target=/root/.npm-production npm ci --ignore-scripts --omit-dev
+RUN npm run build
 
 FROM node:22-alpine AS release
 
