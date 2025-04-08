@@ -52,6 +52,34 @@ services:
     networks:
     - api
 
+  mcp:
+      build:
+        context: .
+        dockerfile: mcp/Dockerfile
+      ports:
+        - "6274:6274"
+        - "6277:6277"
+      networks:
+        - api
+
+  n8n:
+    image: docker.n8n.io/n8nio/n8n
+    container_name: n8n
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_HOST=localhost
+      - N8N_PORT=5678
+      - WEBHOOK_URL=http://localhost:5678
+      - GENERIC_TIMEZONE=Europe/London
+    volumes:
+      - n8n-data:/home/node/.n8n
+    networks:
+    - api
+    restart: unless-stopped
+
+
+
 networks:
   api:
     driver: bridge
@@ -63,4 +91,8 @@ volumes:
      driver: local
   vector_store:
      driver: local
+  ollama-data:
+    driver: local
+  n8n-data:
+    driver: local
 
