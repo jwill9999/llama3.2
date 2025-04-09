@@ -3,10 +3,14 @@
 <div align="center">
 <img src="./public/ollama.jpg" alt="Ollama with Llama 3.2"  />
 </div>
-
+<div align="center">
+<img src="./public/api.png" alt="Ollama with Llama 3.2" width=30%  />
+<img src="./public/webui.png" alt="Ollama with Llama 3.2"  width=30% />
+<img src="./public/n8n.png" alt="Ollama with Llama 3.2" width=30% />
+</div>
 <br>
 
-A FastAPI service that provides a comprehensive interface for Llama 3.2, featuring document processing, vector store integration, and a web UI.
+A FastAPI service that provides a comprehensive interface for Llama 3.2, featuring document processing, vector store integration, workflow automation, and a web UI.
 
 ## Features
 
@@ -14,6 +18,7 @@ A FastAPI service that provides a comprehensive interface for Llama 3.2, featuri
 - Document processing and embedding support
 - Vector store integration with ChromaDB
 - Open WebUI interface for easy interaction
+- Workflow automation with n8n
 - Docker container for easy deployment
 - Integration with Ollama for model management
 
@@ -33,6 +38,7 @@ docker-compose up -d
 # Access the services:
 # - API: http://localhost:8000
 # - Open WebUI: http://localhost:3000
+# - n8n Workflow Automation: http://localhost:5678
 # - API Documentation: http://localhost:8000/docs
 ```
 
@@ -48,6 +54,7 @@ make up
 # Access the services:
 # - API: http://localhost:8000
 # - Open WebUI: http://localhost:3000
+# - n8n Workflow Automation: http://localhost:5678
 ```
 
 ## API Endpoints
@@ -74,10 +81,12 @@ make up
 # Pull the images
 docker pull jwill9999/llama3.2-api:latest
 docker pull jwill9999/llama3.2-ollama:latest
+docker pull docker.n8n.io/n8nio/n8n:latest
 
 # Run the containers
 docker run -p 8000:8000 jwill9999/llama3.2-api:latest
 docker run -p 11434:11434 jwill9999/llama3.2-ollama:latest
+docker run -p 5678:5678 docker.n8n.io/n8nio/n8n:latest
 ```
 
 ## Available Commands
@@ -144,6 +153,7 @@ llama3.2/
 - Docker and Docker Compose
 - An Ollama instance with the Llama 3.2 model loaded
 - Google Drive API credentials (optional, for Google Drive integration)
+- n8n account (optional, for workflow automation)
 
 ## License
 
