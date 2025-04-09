@@ -6,11 +6,14 @@
 
 <br>
 
-A FastAPI service that interfaces with Ollama to provide a REST API for the Llama 3.2 model.
+A FastAPI service that provides a comprehensive interface for Llama 3.2, featuring document processing, vector store integration, and a web UI.
 
 ## Features
 
 - REST API for text generation with Llama 3.2
+- Document processing and embedding support
+- Vector store integration with ChromaDB
+- Open WebUI interface for easy interaction
 - Docker container for easy deployment
 - Integration with Ollama for model management
 
@@ -27,8 +30,10 @@ docker-compose build
 # Start the services
 docker-compose up -d
 
-# Access the API at http://localhost:8000
-# Use http://localhost:8000/docs for the OpenAPI documentation
+# Access the services:
+# - API: http://localhost:8000
+# - Open WebUI: http://localhost:3000
+# - API Documentation: http://localhost:8000/docs
 ```
 
 ## Alternative: Using Make Commands
@@ -40,22 +45,39 @@ make build
 # Start the services
 make up
 
-# Access the API at http://localhost:8000
+# Access the services:
+# - API: http://localhost:8000
+# - Open WebUI: http://localhost:3000
 ```
 
 ## API Endpoints
 
-- `GET /`: Health check endpoint
+- `GET /ping`: Health check endpoint
 - `GET /ask?prompt=YOUR_PROMPT`: Generate a response to the given prompt
+- `POST /upload`: Upload and process documents (supports multiple formats)
+- `GET /documents`: List processed documents
+- `POST /webhook/google-drive`: Webhook endpoint for Google Drive integration
 
-## Docker Image
+## Supported Document Formats
+
+- Text files (.txt)
+- PDF documents (.pdf)
+- Word documents (.docx)
+- Markdown files (.md)
+- HTML files (.html)
+- Excel spreadsheets (.xlsx)
+- PowerPoint presentations (.pptx)
+
+## Docker Images
 
 ```bash
-# Pull the image
+# Pull the images
 docker pull jwill9999/llama3.2-api:latest
+docker pull jwill9999/llama3.2-ollama:latest
 
-# Run the container
+# Run the containers
 docker run -p 8000:8000 jwill9999/llama3.2-api:latest
+docker run -p 11434:11434 jwill9999/llama3.2-ollama:latest
 ```
 
 ## Available Commands
@@ -108,10 +130,12 @@ llama3.2/
 │   └── pull-llama3.2.sh   # Pull Llama model script
 ├── public/
 │   └── ollama.jpg         # Logo image
+├── chroma_db/             # Vector store database
 ├── main.py                # FastAPI application
 ├── requirements.txt       # Python dependencies
 ├── compose.yml            # Docker Compose configuration
 ├── makefile               # Make commands
+├── open-webui-config.json # Open WebUI configuration
 └── VERSION                # Current version file
 ```
 
@@ -119,6 +143,7 @@ llama3.2/
 
 - Docker and Docker Compose
 - An Ollama instance with the Llama 3.2 model loaded
+- Google Drive API credentials (optional, for Google Drive integration)
 
 ## License
 
