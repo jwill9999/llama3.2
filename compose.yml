@@ -72,6 +72,7 @@ services:
       - N8N_PORT=5678
       - WEBHOOK_URL=http://localhost:5678
       - GENERIC_TIMEZONE=Europe/London
+      - N8N_COMMUNITY_PACKAGES_ALLOW_TOOL_USAGE=true
     volumes:
       - n8n-data:/home/node/.n8n
     networks:
