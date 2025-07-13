@@ -2,10 +2,21 @@ FROM python:3.10-slim
 
 WORKDIR /app
 
+# Copy requirements file
 COPY requirements.txt /app/requirements.txt
 
-RUN pip install -r /app/requirements.txt
+RUN apt-get update && apt-get install -y curl
 
-COPY . /app
+# Install dependencies
+RUN echo "Installing dependencies" && \
+    pip install --no-cache-dir -r /app/requirements.txt && \
+    echo "✅ Install dependencies complete"
 
-CMD fastapi run --reload
+# Copy source code
+COPY main.py /app/main.py
+
+# Output info message
+RUN echo "✅ FastAPI server ready to start"
+
+# Start FastAPI server
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
